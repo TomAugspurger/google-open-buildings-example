@@ -21,3 +21,5 @@ necessary to hold that uncompressed data in pandas.
 
 To avoid that, you could decompress the `.csv.gz` and set `blocksize=...` in the call to `read_csv`,
 where blocksize is some size in MB. You'd also need to adjust the regular expression to remove the `.gz`.
+
+Also, dask is writing one file per s2_cell per partition. `s2_cell` should be unique within partitions, so we should have just one per partition. Maybe because it's a categorical dtype?
